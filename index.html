@@ -1,1 +1,214 @@
-In progress, come back later :-)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cedric Van Labeke — software engineering leader and independent tool maker.">
+    <title>Cedric Van Labeke — vanlabeke.dev</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --fg: #111;
+            --muted: #666;
+            --faint: #999;
+            --border: #e0e0e0;
+            --card-bg: #fff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0e0e0e;
+                --fg: #e8e8e8;
+                --muted: #999;
+                --faint: #666;
+                --border: #1e1e1e;
+                --card-bg: #161616;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        header { padding: 72px 0 56px; }
+
+        .logo {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: lowercase;
+            color: var(--faint);
+            margin-bottom: 48px;
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            margin-bottom: 20px;
+        }
+
+        .intro {
+            font-size: 17px;
+            color: var(--muted);
+            max-width: 540px;
+            line-height: 1.7;
+        }
+
+        /* Sections */
+        section { padding: 44px 0; border-top: 1px solid var(--border); }
+
+        h2 {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--faint);
+            margin-bottom: 28px;
+        }
+
+        /* About */
+        .about-text { font-size: 15px; line-height: 1.8; color: var(--fg); }
+        .about-text + .about-text { margin-top: 14px; }
+
+        /* Background */
+        .timeline { display: grid; gap: 20px; }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 16px;
+            align-items: baseline;
+        }
+
+        .timeline-label { font-size: 13px; color: var(--faint); font-weight: 500; }
+        .timeline-text { font-size: 15px; line-height: 1.6; }
+
+        /* Tools */
+        .tools-grid { display: grid; gap: 12px; }
+
+        .tool-card {
+            display: block;
+            padding: 20px 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a.tool-card:hover { border-color: var(--muted); }
+
+        .tool-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .tool-name { font-size: 16px; font-weight: 600; }
+        .tool-platform { font-size: 12px; color: var(--faint); }
+        .tool-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-top: 6px; }
+
+        /* Connect */
+        .links { display: flex; gap: 28px; }
+
+        .links a {
+            font-size: 15px;
+            color: var(--fg);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1px;
+        }
+
+        .links a:hover { border-color: var(--fg); }
+
+        /* Footer */
+        footer { padding: 44px 0; border-top: 1px solid var(--border); }
+        footer p { font-size: 12px; color: var(--faint); }
+
+        @media (max-width: 600px) {
+            header { padding: 48px 0 36px; }
+            h1 { font-size: 28px; }
+            .intro { font-size: 15px; }
+            .timeline-item { grid-template-columns: 1fr; gap: 2px; }
+            .links { flex-direction: column; gap: 14px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <header>
+        <div class="logo">vanlabeke.dev</div>
+        <h1>Cedric Van Labeke</h1>
+        <p class="intro">Software engineering leader with ~20 years in the industry. I build and scale engineering teams, and I make tools that solve real problems.</p>
+    </header>
+
+    <section>
+        <h2>What I Do</h2>
+        <p class="about-text">I lead software engineering organizations — building teams, shaping culture, and delivering reliable systems at scale. My background is in enterprise networking, zero trust security, and data plane systems.</p>
+        <p class="about-text">Through vanlabeke.dev, I also build and publish independent software — tools and apps that I use myself, and that others (hopefully!) find useful too.</p>
+    </section>
+
+    <section>
+        <h2>Background</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-label">Now</span>
+                <span class="timeline-text">Director of Software Engineering at Elisity — leading teams across data plane and analytics for an enterprise zero trust platform.</span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-label">Previously</span>
+                <span class="timeline-text">15 years at Cisco — engineering management, innovation R&D, and developer tooling that served thousands of engineers.</span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-label">Education</span>
+                <span class="timeline-text">Master's in Software Engineering</span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-label">Outside work</span>
+                <span class="timeline-text">Kids, Wife, ITF Taekwondo</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Tools & Projects</h2>
+        <div class="tools-grid">
+            <a href="/athan/" class="tool-card">
+                <div class="tool-header">
+                    <span class="tool-name">Athan</span>
+                    <span class="tool-platform">macOS</span>
+                </div>
+                <div class="tool-desc">Prayer times in your menu bar. Accurate calculations, multiple conventions, and a built-in Book of Prayers.</div>
+            </a>
+            <div class="tool-card">
+                <div class="tool-header">
+                    <span class="tool-name">Viso</span>
+                    <span class="tool-platform">iOS · Android · Google TV</span>
+                </div>
+                <div class="tool-desc">Cast video calls to TV screens. Big-screen video calling for families, friends, and students.</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Connect</h2>
+        <div class="links">
+            <a href="https://linkedin.com/in/cevala" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/cvanlabe" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024–2026 vanlabeke.dev</p>
+    </footer>
+
+</div>
+</body>
+</html>
