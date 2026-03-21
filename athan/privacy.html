@@ -161,39 +161,39 @@
     <p class="last-updated">Last updated: March 10, 2025</p>
 
     <div class="highlight">
-        <p>Athan does not collect, store, or transmit any personal data. Everything stays on your Mac.</p>
+        <p>Athan does not collect, store, or transmit any personal data. Everything stays on your device.</p>
     </div>
 
     <h2>Overview</h2>
-    <p>Athan is a macOS menu bar application for Islamic prayer times. It is designed with privacy as a core principle. The app operates entirely on your device and does not communicate with any external servers.</p>
+    <p>Athan is an application for macOS, iOS, and Android for Islamic prayer times. It is designed with privacy as a core principle. The app operates entirely on your device and does not communicate with any external servers.</p>
 
     <h2>Location Data</h2>
     <p>Athan requests access to your location to calculate accurate prayer times based on where you are. This data is:</p>
     <ul>
-        <li>Processed entirely on your device using the macOS Core Location framework</li>
+        <li>Processed entirely on your device using your device's location services</li>
         <li>Used only to compute prayer times and detect your region for the correct calculation method</li>
         <li>Never transmitted to any server, API, or third party</li>
         <li>Never stored beyond the current session</li>
     </ul>
-    <p>You can deny location access at any time in System Settings. The app will continue to function if you have previously allowed location access, using the last known coordinates.</p>
+    <p>You can deny location access at any time in your device's settings. The app will continue to function if you have previously allowed location access, using the last known coordinates.</p>
 
     <h2>Calendar Data</h2>
-    <p>If you use the optional calendar booking feature, Athan requests access to your macOS Calendar. This data is:</p>
+    <p>If you use the optional calendar booking feature, Athan requests access to your device's calendar. This data is:</p>
     <ul>
         <li>Read locally to identify free time slots within prayer windows</li>
         <li>Used only to propose and book prayer time events into your calendar</li>
-        <li>Never transmitted, copied, or shared outside the macOS Calendar framework</li>
+        <li>Never transmitted, copied, or shared outside your device's calendar framework</li>
     </ul>
-    <p>Calendar access is optional and only requested when you open the booking feature. You can revoke it at any time in System Settings.</p>
+    <p>Calendar access is optional and only requested when you open the booking feature. You can revoke it at any time in your device's settings.</p>
 
     <h2>Notifications</h2>
-    <p>Athan uses the macOS notification system to alert you when prayers start or are about to end. Notification content is generated locally and is not sent to any server.</p>
+    <p>Athan uses your device's notification system to alert you when prayers start or are about to end. Notification content is generated locally and is not sent to any server.</p>
 
     <h2>Prayer Tracking</h2>
-    <p>Athan lets you mark prayers as completed throughout the day. This tracking data is stored locally on your device using macOS UserDefaults. It is never transmitted, synced, or shared. The data resets daily at Fajr time.</p>
+    <p>Athan lets you mark prayers as completed throughout the day. This tracking data is stored locally on your device. It is never transmitted, synced, or shared. The data resets daily at Fajr time.</p>
 
     <h2>Preferences &amp; Settings</h2>
-    <p>Your settings (calculation method, madhab, display preferences) are stored locally using macOS UserDefaults. This data:</p>
+    <p>Your settings (calculation method, madhab, display preferences) are stored locally on your device. This data:</p>
     <ul>
         <li>Remains on your device</li>
         <li>Is not synced to iCloud or any cloud service</li>
@@ -207,7 +207,7 @@
     <p>Athan does not include any analytics frameworks, tracking pixels, advertising SDKs, or crash reporting tools. The app makes zero network requests.</p>
 
     <h2>Third-Party Services</h2>
-    <p>Athan does not use any third-party services. Prayer time calculations are performed on-device using the open-source <a href="https://github.com/batoulapps/adhan-swift">Adhan</a> library.</p>
+    <p>Athan does not use any third-party services. Prayer time calculations are performed on-device using the open-source Adhan library — <a href="https://github.com/batoulapps/adhan-swift">adhan-swift</a> on macOS and <a href="https://pub.dev/packages/adhan">adhan-dart</a> on iOS and Android.</p>
 
     <h2>Children's Privacy</h2>
     <p>Athan does not collect any data from any user, including children. The app is safe for use by people of all ages.</p>

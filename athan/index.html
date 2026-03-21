@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Athan — Prayer Times for Your Mac Menu Bar</title>
+    <title>Athan — Prayer Times for macOS, iOS &amp; Android</title>
+    <meta name="description" content="Athan keeps you connected to your prayers throughout the day. Accurate prayer times, smart notifications, calendar booking, and a built-in Book of Prayers. Available on macOS, iOS, and Android.">
     <link rel="icon" type="image/png" href="athan_web_icon.png">
     <style>
         :root {
@@ -369,8 +370,8 @@
 
         .usp-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 3rem;
             align-items: center;
         }
 
@@ -433,8 +434,7 @@
         }
 
         .features-screenshot {
-            position: sticky;
-            top: 6rem;
+            text-align: center;
         }
 
         /* Settings screenshots */
@@ -442,12 +442,13 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
         .settings-screenshots img {
             width: 100%;
+            max-width: none !important;
         }
 
         .screenshot-caption {
@@ -561,6 +562,12 @@
             padding: 2.5rem 2rem;
             text-align: center;
             transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card .pricing-features {
+            flex: 1;
         }
 
         .pricing-card.featured {
@@ -749,25 +756,17 @@
             color: var(--text-dim);
         }
 
-        /* macOS badge */
-        .macos-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            margin-top: 1rem;
-        }
-
         /* Responsive */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .features-layout {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .features-screenshot {
-                position: static;
+            .features-screenshot,
+            .features-screenshot-mobile {
                 text-align: center;
+                margin-bottom: 1rem;
             }
 
             .screenshot-menubar {
@@ -784,8 +783,8 @@
             }
 
             .settings-screenshots {
-                grid-template-columns: 1fr;
-                max-width: 400px;
+                gap: 1rem;
+                max-width: 700px;
             }
 
             .methods-grid {
@@ -837,6 +836,225 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+/* Platform Tab Bar (below hero) */
+.platform-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: var(--navy-light);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+    position: sticky;
+    top: 60px;
+    z-index: 90;
+}
+
+.platform-tabs button {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--text-dim);
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+}
+
+.platform-tabs button[aria-selected="true"] {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    font-weight: 600;
+}
+
+.platform-tabs button:hover:not([aria-selected="true"]) {
+    color: var(--gold-light);
+    border-bottom-color: rgba(201, 169, 97, 0.3);
+}
+
+/* Tab visibility — hide platform-specific content, but NOT the tab buttons */
+.platform-tabs button {
+    display: inline-block !important;
+}
+
+[data-platform] {
+    display: none;
+}
+
+/* Show content for active platform */
+body.platform-macos [data-platform="macos"],
+body.platform-mobile [data-platform="mobile"] {
+    display: block;
+}
+
+/* Restore correct display types for grid/flex containers */
+body.platform-macos .features-layout[data-platform="macos"],
+body.platform-mobile .features-layout[data-platform="mobile"] {
+    display: grid !important;
+}
+
+body.platform-macos .hero-buttons[data-platform="macos"],
+body.platform-mobile .hero-buttons[data-platform="mobile"] {
+    display: flex !important;
+}
+
+body.platform-macos .settings-screenshots[data-platform="macos"],
+body.platform-mobile .settings-screenshots[data-platform="mobile"] {
+    display: grid !important;
+}
+
+body.platform-macos .pricing-cards[data-platform="macos"],
+body.platform-mobile .pricing-cards[data-platform="mobile"] {
+    display: grid !important;
+}
+
+body.platform-macos .steps[data-platform="macos"],
+body.platform-mobile .steps[data-platform="mobile"] {
+    display: grid !important;
+}
+
+/* Requirements badge (used for both macOS and mobile) */
+.requirements-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 1rem;
+}
+
+/* Crossfade transition */
+[data-platform] {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile screenshot styling (phone-sized images) */
+.screenshot-mobile {
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 20px;
+    border: 1px solid rgba(201, 169, 97, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile feature screenshot in features-layout */
+.features-screenshot-mobile {
+    text-align: center;
+}
+
+.features-screenshot-mobile img {
+    max-width: 380px;
+    border-radius: 20px;
+    border: 1px solid rgba(201, 169, 97, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Google Play button style */
+.btn-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 0.875rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.2s;
+}
+
+.btn-play:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201, 169, 97, 0.3);
+}
+
+.feature-icon.amber { background: rgba(245, 166, 35, 0.15); }
+
+/* FAQ */
+.faq {
+    background: var(--navy-light);
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faq-item {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201, 169, 97, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.faq-question:hover {
+    color: var(--gold);
+}
+
+.faq-question .arrow {
+    font-size: 0.8rem;
+    color: var(--gold);
+    transition: transform 0.3s;
+}
+
+.faq-item.open .faq-question .arrow {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-answer-inner {
+    padding: 0 1.5rem 1.25rem;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+}
+
+.faq-answer-inner p {
+    margin-bottom: 0.75rem;
+}
+
+.faq-answer-inner p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer-inner strong {
+    color: var(--text);
+}
     </style>
 </head>
 <body>
@@ -861,21 +1079,23 @@
     <div class="stars" id="stars"></div>
     <div class="hero-content">
         <img src="athan_web_icon.png" alt="Athan app icon" class="hero-icon">
-        <h1>Prayer times, right where you need them</h1>
+        <h1>Prayer times, right where you need them, wherever you go</h1>
         <div class="hero-badge">
-            <span>&#9790;</span> Built for macOS
+            <span>&#9790;</span> macOS · iOS · Android
         </div>
-        <p>Athan lives in your menu bar and keeps you connected to your prayers throughout the day. Accurate times, smart notifications, and calendar integration that works around your schedule.</p>
+        <p>Athan keeps you connected to your prayers throughout the day. Accurate times, smart notifications, and calendar integration that works around your schedule.</p>
         <div class="hero-buttons">
-            <a href="#download" class="btn-primary">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M15.6 8.4c-.1-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.8-.4 6.9 1.1 9.1.8 1.1 1.7 2.3 2.9 2.3 1.1 0 1.6-.7 2.9-.7 1.4 0 1.8.7 3 .7 1.2 0 2-1.1 2.8-2.2.9-1.3 1.2-2.5 1.3-2.6-.1-.1-2.4-1-2.4-3.7zM13.4 2.8c.6-.8 1-1.8.9-2.8-.9 0-2 .6-2.6 1.4-.5.7-1 1.8-.9 2.8 1 .1 2-.5 2.6-1.4z"/></svg>
-                Download on the App Store
-            </a>
+            <a href="#download" class="btn-primary">Download</a>
             <a href="#features" class="btn-secondary">See features</a>
         </div>
-        <div class="macos-badge">Requires macOS 14 Sonoma or later</div>
     </div>
 </section>
+
+<!-- Platform Tabs -->
+<div class="platform-tabs" role="tablist" aria-label="Platform">
+    <button role="tab" id="tab-macos" data-platform="macos" aria-selected="true" tabindex="0">MacOS</button>
+    <button role="tab" id="tab-mobile" data-platform="mobile" aria-selected="false" tabindex="-1">iOS &amp; Android</button>
+</div>
 
 <!-- Features -->
 <section class="features" id="features">
@@ -886,46 +1106,85 @@
             <p class="section-subtitle">Athan stays out of your way until it's time to pray. No bloat, no ads, no distractions.</p>
         </div>
 
-        <div class="features-layout">
+        <!-- macOS Features -->
+        <div class="features-layout" data-platform="macos">
             <div class="features-screenshot fade-in">
                 <img src="screenshot-menubar.png" alt="Athan menu bar showing prayer times" class="screenshot screenshot-menubar">
             </div>
-
             <div class="features-grid">
                 <div class="feature-card fade-in">
                     <div class="feature-icon gold">&#9790;</div>
                     <h3>Menu Bar Native</h3>
                     <p>Lives in your menu bar, always one glance away. Choose to see the next prayer, current prayer, countdown, or just the icon.</p>
                 </div>
-
                 <div class="feature-card fade-in">
                     <div class="feature-icon teal">&#9201;</div>
                     <h3>Accurate Prayer Times</h3>
                     <p>Powered by the Adhan library with 12 calculation methods used worldwide. Auto-detects the right method based on your location.</p>
                 </div>
-
                 <div class="feature-card fade-in">
                     <div class="feature-icon pink">&#128276;</div>
                     <h3>Smart Notifications</h3>
                     <p>Get notified when a prayer starts and set reminders before it ends. Configurable 15, 20, or 30 minute warnings so you never miss a prayer.</p>
                 </div>
-
                 <div class="feature-card fade-in">
                     <div class="feature-icon indigo">&#9745;</div>
                     <h3>Prayer Tracking</h3>
                     <p>Mark prayers as completed with a simple click. Resets daily at Fajr. A small thing that builds a big habit.</p>
                 </div>
-
                 <div class="feature-card fade-in">
                     <div class="feature-icon green">&#127759;</div>
                     <h3>Location Aware</h3>
                     <p>Uses your GPS location with reverse geocoding. Automatically updates prayer times when you travel. No manual city selection needed.</p>
                 </div>
-
                 <div class="feature-card fade-in">
                     <div class="feature-icon orange">&#128332;</div>
                     <h3>Jumu'ah Support</h3>
                     <p>Special handling for Friday prayers with configurable duration and optional fixed start times for your local mosque.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Features -->
+        <div class="features-layout" data-platform="mobile">
+            <div class="features-screenshot-mobile fade-in">
+                <img src="screen_prayer_times.png" alt="Athan mobile prayer times screen" class="screenshot-mobile">
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon gold">&#9790;</div>
+                    <h3>Always Accessible</h3>
+                    <p>Prayer times at your fingertips. Open the app to see today's full schedule with the current and next prayer highlighted.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon teal">&#9201;</div>
+                    <h3>Accurate Prayer Times</h3>
+                    <p>Powered by the Adhan library with 12 calculation methods used worldwide. Auto-detects the right method based on your location.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon pink">&#128276;</div>
+                    <h3>Smart Notifications</h3>
+                    <p>Get notified when a prayer starts and set reminders before it ends. Configurable warnings so you never miss a prayer.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon indigo">&#9745;</div>
+                    <h3>Prayer Tracking</h3>
+                    <p>Mark prayers as completed with a simple tap. Resets daily at Fajr. A small thing that builds a big habit.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon green">&#127759;</div>
+                    <h3>Location Aware</h3>
+                    <p>Uses your GPS location with reverse geocoding. Automatically updates prayer times when you travel. No manual city selection needed.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon orange">&#128332;</div>
+                    <h3>Jumu'ah Support</h3>
+                    <p>Special handling for Friday prayers with configurable duration and optional fixed start times for your local mosque.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon amber">&#129517;</div>
+                    <h3>Qibla Compass</h3>
+                    <p>Find the direction of the Ka'aba from wherever you are. A beautiful compass that shows you exactly which way to face for prayer.</p>
                 </div>
             </div>
         </div>
@@ -942,35 +1201,53 @@
                 <p class="section-subtitle">Life happens. Meetings shift, days get packed, and prayer times can slip through the cracks. Athan's booking wizard reserves prayer slots as early as possible within each prayer window, working around your existing commitments — weeks or even months ahead of time.</p>
 
                 <ul class="usp-features">
+                    <li><span class="check">&#10003;</span><span>Auto-schedules prayers at the earliest available time in each prayer window</span></li>
+                    <li><span class="check">&#10003;</span><span>Reads your calendar to avoid conflicts with existing commitments</span></li>
+                    <li><span class="check">&#10003;</span><span>Plan ahead — book prayer times weeks or months in advance</span></li>
+                    <li><span class="check">&#10003;</span><span>Adjust any proposed slot to fit your schedule</span></li>
+                    <li><span class="check">&#10003;</span><span>Books directly into your calendar with one click</span></li>
+                    <li><span class="check">&#10003;</span><span>Extended Jumu'ah duration with custom start times for Fridays</span></li>
+                </ul>
+            </div>
+
+            <div class="fade-in" data-platform="macos">
+                <img src="screenshot-book-prayers.png" alt="Athan calendar booking view showing prayer slots scheduled around meetings" class="screenshot">
+            </div>
+
+            <div class="fade-in" data-platform="mobile">
+                <img src="screen_book_prayers.png" alt="Athan mobile calendar booking view" class="screenshot-mobile">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Qibla (mobile only) -->
+<section class="usp" data-platform="mobile">
+    <div class="container">
+        <div class="usp-layout">
+            <div class="usp-content fade-in">
+                <div class="section-label">Find your direction</div>
+                <h2 class="section-title">Qibla compass, always with you</h2>
+                <p class="section-subtitle">Know exactly which direction to face for prayer, wherever you are in the world. The built-in compass shows the direction to the Ka'aba in Makkah with precision.</p>
+
+                <ul class="usp-features">
                     <li>
                         <span class="check">&#10003;</span>
-                        <span>Auto-schedules prayers at the earliest available time in each prayer window</span>
+                        <span>Real-time compass using your device's sensors</span>
                     </li>
                     <li>
                         <span class="check">&#10003;</span>
-                        <span>Reads your calendar to avoid conflicts with existing commitments</span>
+                        <span>Shows exact bearing and distance to Makkah</span>
                     </li>
                     <li>
                         <span class="check">&#10003;</span>
-                        <span>Plan ahead — book prayer times weeks or months in advance</span>
-                    </li>
-                    <li>
-                        <span class="check">&#10003;</span>
-                        <span>Drag-and-drop to manually adjust any proposed slot</span>
-                    </li>
-                    <li>
-                        <span class="check">&#10003;</span>
-                        <span>Books directly into your macOS Calendar with one click</span>
-                    </li>
-                    <li>
-                        <span class="check">&#10003;</span>
-                        <span>Extended Jumu'ah duration with custom start times for Fridays</span>
+                        <span>Works offline — no internet connection needed</span>
                     </li>
                 </ul>
             </div>
 
-            <div class="fade-in">
-                <img src="screenshot-book-prayers.png" alt="Athan calendar booking view showing prayer slots scheduled around meetings" class="screenshot">
+            <div class="fade-in" style="text-align: center;">
+                <img src="screen_qibla.png" alt="Athan Qibla compass showing direction to Makkah" class="screenshot-mobile">
             </div>
         </div>
     </div>
@@ -984,11 +1261,11 @@
             <h2 class="section-title">Up and running in under a minute</h2>
         </div>
 
-        <div class="steps">
+        <div class="steps" data-platform="macos">
             <div class="step fade-in">
                 <div class="step-number">1</div>
                 <h3>Install &amp; allow location</h3>
-                <p>Download from the App Store. The guided onboarding asks for location access to calculate accurate prayer times for where you are.</p>
+                <p>Download from the Mac App Store. The guided onboarding asks for location access to calculate accurate prayer times for where you are.</p>
             </div>
             <div class="step fade-in">
                 <div class="step-number">2</div>
@@ -999,6 +1276,24 @@
                 <div class="step-number">3</div>
                 <h3>Pray on time</h3>
                 <p>Prayer times appear in your menu bar. Get notified, track your prayers, and optionally book them into your calendar.</p>
+            </div>
+        </div>
+
+        <div class="steps" data-platform="mobile">
+            <div class="step fade-in">
+                <div class="step-number">1</div>
+                <h3>Install &amp; allow location</h3>
+                <p>Download from the App Store or Google Play. The guided onboarding asks for location access to calculate accurate prayer times for where you are.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">2</div>
+                <h3>Pick your method</h3>
+                <p>Athan auto-detects the right calculation method for your region. Adjust the madhab and display preferences to match your practice.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">3</div>
+                <h3>Pray on time</h3>
+                <p>Prayer times are always a tap away on your home screen. Get notified, track your prayers, and optionally book them into your calendar.</p>
             </div>
         </div>
     </div>
@@ -1013,7 +1308,7 @@
             <p class="section-subtitle">Choose your calculation method, madhab, display mode, notifications, and Jumu'ah settings. Everything adapts to how you pray.</p>
         </div>
 
-        <div class="settings-screenshots fade-in">
+        <div class="settings-screenshots fade-in" data-platform="macos">
             <div>
                 <img src="screenshot-settings-calculation.png" alt="Athan calculation settings" class="screenshot">
                 <p class="screenshot-caption">Calculation method, madhab &amp; Jumu'ah settings</p>
@@ -1021,6 +1316,17 @@
             <div>
                 <img src="screenshot-settings-display.png" alt="Athan display settings" class="screenshot">
                 <p class="screenshot-caption">Display mode, notifications &amp; reminders</p>
+            </div>
+        </div>
+
+        <div class="settings-screenshots fade-in" data-platform="mobile">
+            <div>
+                <img src="screen_settings.png" alt="Athan mobile settings — location, calculation, Jumu'ah" class="screenshot-mobile">
+                <p class="screenshot-caption">Location, calculation method &amp; Jumu'ah settings</p>
+            </div>
+            <div>
+                <img src="screen_settings2.png" alt="Athan mobile settings — calendar, display, notifications" class="screenshot-mobile">
+                <p class="screenshot-caption">Calendar, display &amp; notification settings</p>
             </div>
         </div>
     </div>
@@ -1061,7 +1367,8 @@
             <p class="section-subtitle">Core prayer times and notifications are completely free. Calendar booking is a one-time purchase.</p>
         </div>
 
-        <div class="pricing-cards fade-in">
+        <!-- macOS pricing -->
+        <div class="pricing-cards fade-in" data-platform="macos">
             <div class="pricing-card">
                 <h3>Free</h3>
                 <div class="price">$0</div>
@@ -1075,9 +1382,8 @@
                     <li><span class="icon">&#10003;</span> Sunrise, sunset &amp; sunnah times</li>
                     <li><span class="icon disabled">&#8212;</span><span style="color: var(--text-dim)">Calendar booking</span></li>
                 </ul>
-                <a href="#download" class="btn-secondary" style="width: 100%; justify-content: center;">Download free</a>
+                <a href="https://apps.apple.com/us/app/athan-for-mac/id6760509284" class="btn-secondary" style="width: 100%; justify-content: center;">Download free</a>
             </div>
-
             <div class="pricing-card featured">
                 <h3>Calendar Booking</h3>
                 <div class="price">$4.99 <span>one-time</span></div>
@@ -1091,6 +1397,39 @@
                     <li><span class="icon">&#10003;</span> Week-at-a-glance view</li>
                     <li><span class="icon">&#10003;</span> One-click booking</li>
                 </ul>
+                <a href="https://apps.apple.com/us/app/athan-for-mac/id6760509284" class="btn-primary" style="width: 100%; justify-content: center;">Get Athan</a>
+            </div>
+        </div>
+
+        <!-- Mobile pricing -->
+        <div class="pricing-cards fade-in" data-platform="mobile">
+            <div class="pricing-card">
+                <h3>Free</h3>
+                <div class="price">$0</div>
+                <div class="price-note">Free forever</div>
+                <ul class="pricing-features">
+                    <li><span class="icon">&#10003;</span> Accurate prayer times</li>
+                    <li><span class="icon">&#10003;</span> Smart notifications</li>
+                    <li><span class="icon">&#10003;</span> Prayer tracking</li>
+                    <li><span class="icon">&#10003;</span> 12 calculation methods</li>
+                    <li><span class="icon">&#10003;</span> Qibla compass</li>
+                    <li><span class="icon">&#10003;</span> Sunrise, sunset &amp; sunnah times</li>
+                    <li><span class="icon disabled">&#8212;</span><span style="color: var(--text-dim)">Calendar booking</span></li>
+                </ul>
+                <a href="#download" class="btn-secondary" style="width: 100%; justify-content: center;">Download free</a>
+            </div>
+            <div class="pricing-card" style="border-color: var(--teal);">
+                <h3>Calendar Booking</h3>
+                <div class="price"><s style="opacity: 0.4; font-size: 1.5rem;">$4.99</s> $0.00</div>
+                <div class="price-note" style="color: var(--teal); font-weight: 600;">Now free of charge!</div>
+                <ul class="pricing-features">
+                    <li><span class="icon">&#10003;</span> Everything in Free</li>
+                    <li><span class="icon">&#10003;</span> Smart calendar scheduling</li>
+                    <li><span class="icon">&#10003;</span> Conflict detection</li>
+                    <li><span class="icon">&#10003;</span> Jumu'ah booking</li>
+                    <li><span class="icon">&#10003;</span> Week-at-a-glance view</li>
+                    <li><span class="icon">&#10003;</span> One-click booking</li>
+                </ul>
                 <a href="#download" class="btn-primary" style="width: 100%; justify-content: center;">Get Athan</a>
             </div>
         </div>
@@ -1099,7 +1438,7 @@
 
 <!-- CTA -->
 <section class="cta" id="download">
-    <div class="container fade-in">
+    <div class="container fade-in" data-platform="macos">
         <div class="section-label">Download</div>
         <h2 class="section-title">Start praying on time today</h2>
         <p class="section-subtitle">Athan is free to download. Install it once and it quietly keeps you on track, every single day.</p>
@@ -1107,7 +1446,24 @@
             <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor"><path d="M15.6 8.4c-.1-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.8-.4 6.9 1.1 9.1.8 1.1 1.7 2.3 2.9 2.3 1.1 0 1.6-.7 2.9-.7 1.4 0 1.8.7 3 .7 1.2 0 2-1.1 2.8-2.2.9-1.3 1.2-2.5 1.3-2.6-.1-.1-2.4-1-2.4-3.7zM13.4 2.8c.6-.8 1-1.8.9-2.8-.9 0-2 .6-2.6 1.4-.5.7-1 1.8-.9 2.8 1 .1 2-.5 2.6-1.4z"/></svg>
             Download on the Mac App Store
         </a>
-        <div class="macos-badge">Requires macOS 14 Sonoma or later</div>
+        <div class="requirements-badge">Requires macOS 14 Sonoma or later</div>
+    </div>
+
+    <div class="container fade-in" data-platform="mobile">
+        <div class="section-label">Download</div>
+        <h2 class="section-title">Start praying on time today</h2>
+        <p class="section-subtitle">Athan is free to download. Install it once and it quietly keeps you on track, every single day.</p>
+        <div class="hero-buttons" style="justify-content: center; margin-bottom: 1rem;">
+            <a href="#" class="btn-primary" style="font-size: 1.15rem; padding: 1rem 2.5rem;">
+                <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor"><path d="M15.6 8.4c-.1-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.8-.4 6.9 1.1 9.1.8 1.1 1.7 2.3 2.9 2.3 1.1 0 1.6-.7 2.9-.7 1.4 0 1.8.7 3 .7 1.2 0 2-1.1 2.8-2.2.9-1.3 1.2-2.5 1.3-2.6-.1-.1-2.4-1-2.4-3.7zM13.4 2.8c.6-.8 1-1.8.9-2.8-.9 0-2 .6-2.6 1.4-.5.7-1 1.8-.9 2.8 1 .1 2-.5 2.6-1.4z"/></svg>
+                Download on the App Store
+            </a>
+            <a href="#" class="btn-play" style="font-size: 1.15rem; padding: 1rem 2.5rem;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.395 12l2.303-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302L5.864 2.658z"/></svg>
+                Get it on Google Play
+            </a>
+        </div>
+        <div class="requirements-badge">Requires iOS 17 or later / Android 10 or later</div>
     </div>
 </section>
 
@@ -1120,6 +1476,58 @@
             </div>
             <div class="testimonial-author">Cedric Van Labeke</div>
             <div class="testimonial-role">Author of Athan</div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-title">Common questions</h2>
+        </div>
+
+        <div class="faq-list fade-in">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    How do I use Athan with my Exchange or Outlook calendar?
+                    <span class="arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Athan books prayer times into your device's built-in calendar. To see and schedule around your Exchange or Outlook events, add that account to your device's calendar app:</p>
+                        <p><strong>On macOS:</strong> Open System Settings → Internet Accounts → Add Account → Microsoft Exchange. Sign in with your work credentials. Make sure Calendar is enabled. Your Exchange events will appear in Apple Calendar, and Athan will automatically see them when scheduling prayers.</p>
+                        <p><strong>On iOS:</strong> Go to Settings → Calendar → Accounts → Add Account → Microsoft Exchange. Sign in and enable Calendar sync. Athan will see your Exchange events alongside your personal calendar.</p>
+                        <p><strong>On Android:</strong> Add your Exchange or Outlook account in your device's calendar app. Once synced, Athan will be able to read your work events and schedule prayers around them.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Is Athan really free?
+                    <span class="arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Core features — prayer times, notifications, prayer tracking, and the Qibla compass — are completely free on all platforms, forever.</p>
+                        <p>The calendar booking feature is free on iOS and Android. On macOS, it's available as a one-time $4.99 in-app purchase — no subscriptions, no recurring fees.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Which calculation methods are supported?
+                    <span class="arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Athan supports 12 major Islamic calculation methods: ISNA, Muslim World League, Egyptian, Umm Al-Qura, Karachi, Dubai, Kuwait, Qatar, Singapore, Tehran, Diyanet, and Moonsighting Committee. The app auto-detects the right method based on your location, but you can always switch manually.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -1138,6 +1546,68 @@
 </footer>
 
 <script>
+    // Platform tab switching
+    function getPlatform() {
+        var params = new URLSearchParams(window.location.search);
+        return params.get('platform') === 'mobile' ? 'mobile' : 'macos';
+    }
+
+    function setPlatform(platform) {
+        document.body.classList.remove('platform-macos', 'platform-mobile');
+        document.body.classList.add('platform-' + platform);
+
+        // Update toggle buttons
+        document.querySelectorAll('.platform-tabs button').forEach(function(btn) {
+            btn.setAttribute('aria-selected', btn.dataset.platform === platform);
+        });
+
+        // Update URL without reload
+        var url = new URL(window.location);
+        url.searchParams.set('platform', platform);
+        history.pushState({ platform: platform }, '', url);
+    }
+
+    // Initialize on load
+    var initialPlatform = getPlatform();
+    document.body.classList.add('platform-' + initialPlatform);
+    history.replaceState({ platform: initialPlatform }, '', window.location);
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', function(e) {
+        var platform = (e.state && e.state.platform) ? e.state.platform : getPlatform();
+        document.body.classList.remove('platform-macos', 'platform-mobile');
+        document.body.classList.add('platform-' + platform);
+        document.querySelectorAll('.platform-tabs button').forEach(function(btn) {
+            btn.setAttribute('aria-selected', btn.dataset.platform === platform);
+        });
+    });
+
+    // Wire up toggle buttons after DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.platform-tabs button').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                setPlatform(this.dataset.platform);
+            });
+            // Keyboard: arrow keys switch tabs
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    var buttons = Array.from(document.querySelectorAll('.platform-tabs button'));
+                    var idx = buttons.indexOf(this);
+                    var next = e.key === 'ArrowRight' ? (idx + 1) % buttons.length : (idx - 1 + buttons.length) % buttons.length;
+                    buttons[next].focus();
+                    setPlatform(buttons[next].dataset.platform);
+                }
+            });
+        });
+
+        // Set initial aria-selected state
+        var currentPlatform = getPlatform();
+        document.querySelectorAll('.platform-tabs button').forEach(function(btn) {
+            btn.setAttribute('aria-selected', btn.dataset.platform === currentPlatform);
+        });
+    });
+
     // Star field
     const starsContainer = document.getElementById('stars');
     for (let i = 0; i < 50; i++) {
@@ -1160,6 +1630,29 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var item = this.parentElement;
+            var answer = item.querySelector('.faq-answer');
+            var isOpen = item.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(function(i) {
+                i.classList.remove('open');
+                i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                i.querySelector('.faq-answer').style.maxHeight = null;
+            });
+
+            // Open clicked (if it was closed)
+            if (!isOpen) {
+                item.classList.add('open');
+                this.setAttribute('aria-expanded', 'true');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
 </script>
 
 </body>
