@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EU Product Safety and Compliance — vanlabeke.dev">
+    <title>EU Compliance — vanlabeke.dev</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --fg: #111;
+            --muted: #666;
+            --faint: #999;
+            --border: #e0e0e0;
+            --card-bg: #fff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0e0e0e;
+                --fg: #e8e8e8;
+                --muted: #999;
+                --faint: #666;
+                --border: #1e1e1e;
+                --card-bg: #161616;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 72px 0 56px; }
+
+        .logo {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: lowercase;
+            color: var(--faint);
+            margin-bottom: 48px;
+        }
+
+        .logo a { color: inherit; text-decoration: none; }
+        .logo a:hover { color: var(--fg); }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            margin-bottom: 20px;
+        }
+
+        .intro {
+            font-size: 17px;
+            color: var(--muted);
+            max-width: 540px;
+            line-height: 1.7;
+        }
+
+        section { padding: 44px 0; border-top: 1px solid var(--border); }
+
+        h2 {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--faint);
+            margin-bottom: 28px;
+        }
+
+        .info-block { font-size: 15px; line-height: 1.8; color: var(--fg); }
+        .info-block + .info-block { margin-top: 14px; }
+
+        .product-list { display: grid; gap: 12px; margin-top: 20px; }
+
+        .product-item {
+            padding: 20px 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .product-name { font-size: 16px; font-weight: 600; }
+        .product-platform { font-size: 12px; color: var(--faint); margin-left: 8px; }
+        .product-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-top: 6px; }
+
+        .contact-info { font-size: 15px; line-height: 2; }
+        .contact-info a { color: var(--fg); }
+
+        footer { padding: 44px 0; border-top: 1px solid var(--border); }
+        footer p { font-size: 12px; color: var(--faint); }
+
+        @media (max-width: 600px) {
+            header { padding: 48px 0 36px; }
+            h1 { font-size: 28px; }
+            .intro { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <header>
+        <div class="logo"><a href="/">vanlabeke.dev</a></div>
+        <h1>EU Compliance</h1>
+        <p class="intro">Product safety and compliance information for applications published by vanlabeke.dev, in accordance with European Union regulations.</p>
+    </header>
+
+    <section>
+        <h2>Economic Operator</h2>
+        <div class="contact-info">
+            <strong>Cedric Van Labeke</strong><br>
+            143 677-Al Hebiah Sixth, Mudon<br>
+            0000, Dubai<br>
+            United Arab Emirates<br>
+            <br>
+            Email: <a href="mailto:info@vanlabeke.dev">info@vanlabeke.dev</a>
+        </div>
+    </section>
+
+    <section>
+        <h2>Products</h2>
+        <p class="info-block">The following software applications are published and distributed by vanlabeke.dev:</p>
+        <div class="product-list">
+            <div class="product-item">
+                <span class="product-name">Athan</span>
+                <span class="product-platform">macOS</span>
+                <div class="product-desc">Prayer times menu bar application. Accurate calculation methods, multiple conventions, and calendar integration.</div>
+            </div>
+            <div class="product-item">
+                <span class="product-name">Athan Mobile</span>
+                <span class="product-platform">iOS / Android</span>
+                <div class="product-desc">Prayer times mobile application. Accurate calculations, smart notifications, Qibla compass, and calendar booking.</div>
+            </div>
+            <div class="product-item">
+                <span class="product-name">Viso</span>
+                <span class="product-platform">iOS / Android / Google TV</span>
+                <div class="product-desc">Cast video calls to TV screens for families, friends, and students.</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Safety & Compliance</h2>
+        <p class="info-block">All applications listed above are software-only products distributed digitally through the Apple App Store and Google Play Store. They do not contain physical components, hazardous materials, or hardware elements.</p>
+        <p class="info-block">These applications comply with applicable European Union regulations, including the General Product Safety Regulation (EU) 2023/988 and the Digital Services Act (EU) 2022/2065.</p>
+        <p class="info-block">As software-only products, no CE marking, WEEE, or other physical product safety labels are applicable. No specific safety warnings are required for the use of these applications.</p>
+    </section>
+
+    <section>
+        <h2>Contact</h2>
+        <p class="info-block">For any questions regarding product safety or compliance, please contact us at <a href="mailto:info@vanlabeke.dev">info@vanlabeke.dev</a>.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024–2026 vanlabeke.dev</p>
+    </footer>
+
+</div>
+</body>
+</html>
