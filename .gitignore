@@ -1,1 +1,7 @@
+# Agent and tooling state — local to a machine, never part of the site.
 .superpowers/
+.claude/
+
+# macOS Finder metadata. Written into any directory you so much as open,
+# so this needs to match at every depth, not just the repository root.
+.DS_Store
