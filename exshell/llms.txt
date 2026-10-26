@@ -1,0 +1,136 @@
+# exshell
+
+> exshell is a free, open-source (BSD 3-Clause) command-line viewer for CSV, TSV and Excel (.xlsx, .xlsm) files. It is read-only. When its output is piped or redirected it writes plain, aligned, untruncated text, so AI agents and scripts can use it to read tabular data from a shell.
+
+- Homepage: https://vanlabeke.dev/exshell/
+- Source: https://github.com/vanlabeke/exshell
+- Releases: https://github.com/vanlabeke/exshell/releases
+- Agent skill (drop-in SKILL.md): https://vanlabeke.dev/exshell/SKILL.md
+- Platforms: macOS (universal, signed and notarized), Linux (amd64, arm64), FreeBSD, OpenBSD, NetBSD
+- Single static binary written in Go, no runtime dependencies
+
+## When an agent should use exshell
+
+Use exshell when you need to read or review the contents of a spreadsheet-like file from a terminal:
+
+- An `.xlsx` or `.xlsm` workbook. Most shells have no other way to read one without Python libraries or LibreOffice.
+- A `.csv`, `.tsv`, `.psv` or `.txt` file whose delimiter is comma, semicolon, tab or pipe, including European Excel exports that use `;`.
+- A file whose dates, currency or percentages must be read as Excel displays them, not as raw serial numbers (`45291`) or fractions (`0.125`).
+- A large CSV where `cat` would produce unaligned output that is hard to reason about.
+
+Do not use exshell to edit, sort, filter, compute or convert data. Pipe its output to `grep`, `head`, `sort` or `awk` for that, or use a data library.
+
+## Check it is installed
+
+```bash
+command -v exshell && exshell --version
+```
+
+## Install
+
+```bash
+# macOS / Linux with Homebrew
+brew tap vanlabeke/tap
+brew trust --formula vanlabeke/tap/exshell
+brew install exshell
+
+# Debian / Ubuntu
+sudo install -d /etc/apt/keyrings
+curl -fsSL https://pkg.vanlabeke.dev/apt/gpg.key | sudo tee /etc/apt/keyrings/vanlabeke.asc > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/vanlabeke.asc] https://pkg.vanlabeke.dev/apt stable main" | sudo tee /etc/apt/sources.list.d/vanlabeke.list
+sudo apt update && sudo apt install exshell
+
+# Fedora / RHEL / openSUSE
+sudo curl -fsSL -o /etc/yum.repos.d/vanlabeke.repo https://pkg.vanlabeke.dev/yum/vanlabeke.repo
+sudo dnf install exshell
+
+# From source (Go 1.26+), no sudo
+git clone https://github.com/vanlabeke/exshell && cd exshell && make install PREFIX=$HOME/.local
+```
+
+Ask the user before installing software on their machine.
+
+## Recommended invocations for agents
+
+Always pass `--print` (`-p`). It guarantees plain-text output and never starts the interactive full-screen viewer, even if the agent's shell happens to be attached to a TTY.
+
+```bash
+# Read a whole file
+exshell --print data.csv
+
+# Excel: list the sheets first, then read one by name or 1-based index
+exshell --list-sheets report.xlsx
+exshell --print --sheet Orders report.xlsx
+exshell --print --sheet 2 report.xlsx
+
+# Preview a large file, then search it
+exshell --print big.csv | head -50
+exshell --print big.csv | grep -i "overdue"
+
+# Row count (subtract 2 for the header and the dashed rule line)
+exshell --print data.csv | wc -l
+
+# A file without a header row: columns are labelled A, B, C, ...
+exshell --print --no-header data.csv
+
+# Unusual input
+exshell --print --delim ';' data.txt
+exshell --print --encoding latin1 legacy.csv
+```
+
+Flags and the file argument may appear in any order.
+
+## Output format
+
+When stdout is not a terminal (or with `--print`):
+
+1. Line 1: the header row (row 1 of the file, unless `--no-header`).
+2. Line 2: a rule of dashes under each column.
+3. Then one line per data row.
+
+Columns are separated by two spaces. Numeric columns are right-aligned, text columns left-aligned. Trailing whitespace is trimmed. No cell is truncated when output is piped (unless you pass `--max-col-width`, so don't). Embedded newlines and tabs inside a cell are shown as spaces, so one output line is always one row.
+
+Example:
+
+```
+Order Date  Product    Price  Discount
+----------  -------  -------  --------
+01-15-26    Widget    $19.99       10%
+02-03-26    Gadget   $249.50        0%
+```
+
+For `.xlsx`, values are the format-applied values Excel would display: dates in the cell's own date format, currency with its symbol, percentages as percentages. Formulas show their cached result, not the formula.
+
+## Flags
+
+| Flag | Meaning |
+|---|---|
+| `-p`, `--print` | force plain-text output, even to a terminal |
+| `-i`, `--interactive` | force the interactive viewer (not useful for agents) |
+| `--sheet <name\|#>` | sheet to open, by name or 1-based index |
+| `--list-sheets` | print sheet names, one per line, and exit |
+| `--delim <char>` | override the sniffed CSV delimiter |
+| `--no-header` | treat row 1 as data; label columns A, B, C, ... |
+| `--encoding <enc>` | input encoding: `utf8`, `latin1` or `utf16` |
+| `--max-col-width <n>` | cap column width, truncating with `…` |
+| `--version` | print the version and exit |
+| `-h`, `--help` | print usage and exit |
+
+## Exit codes and errors
+
+- `0`: success.
+- `1`: runtime error, such as a missing or unreadable file, a password-protected `.xlsx`, or a legacy `.xls` file.
+- `2`: usage error, such as an unknown flag or a `--sheet` that does not exist.
+
+Errors are written to stderr as one line prefixed with `exshell:`. stdout is empty on error.
+
+## Limitations
+
+- Read-only viewer: no editing, formulas, sorting or filtering.
+- The whole file is loaded into memory. Fine for typical exports, not for multi-gigabyte files.
+- Input must be a file path. Reading from stdin is not supported.
+- Legacy `.xls` and password-protected workbooks are not supported. Ask the user to re-save as `.xlsx`.
+- Merged cells: the value appears only in the merge's top-left cell; the other cells are empty.
+- Row 1 is always the header unless `--no-header` is given. There is no header detection.
+- Only trailing empty rows and columns are trimmed. Blank rows inside the data are kept.
+- Hidden sheets are included in `--list-sheets` and can be opened with `--sheet`.

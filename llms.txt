@@ -1,0 +1,20 @@
+# vanlabeke.dev
+
+> Independent software by Cedric Van Labeke: small, focused tools and apps. exshell is a command-line viewer for CSV, TSV and Excel files that AI agents can use to read tabular data. Athan is a prayer-times app for macOS, iOS and Android.
+
+## Tools
+
+- [exshell](https://vanlabeke.dev/exshell/): Free, open-source (BSD 3-Clause) CLI to view CSV, TSV and Excel .xlsx files in the terminal. Aligned columns, real dates, automatic delimiter detection, and lossless plain-text output when piped. macOS, Linux and BSD.
+- [exshell agent reference](https://vanlabeke.dev/exshell/llms.txt): How an AI agent or script should install and call exshell, its output format, flags, exit codes and limitations.
+- [exshell agent skill](https://vanlabeke.dev/exshell/SKILL.md): A drop-in SKILL.md that teaches a coding agent to review spreadsheets with exshell.
+
+## Apps
+
+- [Athan](https://vanlabeke.dev/athan/): Islamic prayer times in the macOS menu bar and on iOS and Android. 12 calculation methods, prayer notifications, prayer tracking, Qibla compass, and calendar booking that schedules prayers around meetings.
+- [Athan privacy policy](https://vanlabeke.dev/athan/privacy.html)
+
+## Optional
+
+- [About Cedric Van Labeke](https://vanlabeke.dev/): Software engineering leader and independent tool maker.
+- [Source code on GitHub](https://github.com/vanlabeke)
+- [EU product safety and compliance](https://vanlabeke.dev/compliance.html)
